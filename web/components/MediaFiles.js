@@ -17,9 +17,6 @@ export const MediaFiles = ({mediaFiles, deleteMediaFile, mediaFileEdited}) => {
                   <td>{mediaFile.status}</td>
                   <td>
                     <div className="row">
-                        <div className="col-md-6">
-                            {mediaFile.status}
-                        </div>
                         <div className="col-md-3">
                             <EditMediaFileModal mediaFile={mediaFile} mediaFileEdited={mediaFileEdited}/>
                         </div>
