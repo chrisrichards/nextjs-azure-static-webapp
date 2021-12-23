@@ -19,7 +19,12 @@ namespace com.chrisrichards
         {
             log.LogInformation("CreateMediaFile");
             var requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            var input = JsonSerializer.Deserialize<MediaFileCreateModel>(requestBody);
+            var options = new JsonSerializerOptions {
+                PropertyNameCaseInsensitive = true
+            };
+            var input = JsonSerializer.Deserialize<MediaFileCreateModel>(requestBody, options);
+
+            log.LogInformation($"CreateMediaFile: {input.FileName}");
 
             var todo = new MediaFile() { 
                 FileName = input.FileName,
@@ -64,7 +69,10 @@ namespace com.chrisrichards
             }
 
             var requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            var updated = JsonSerializer.Deserialize<MediaFileUpdateModel>(requestBody);
+            var options = new JsonSerializerOptions {
+                PropertyNameCaseInsensitive = true
+            };
+            var updated = JsonSerializer.Deserialize<MediaFileUpdateModel>(requestBody, options);
 
             mediaFile.FileName = updated.FileName;
             mediaFile.Description = updated.Description;
@@ -84,7 +92,7 @@ namespace com.chrisrichards
             }
 
             Store.RemoveMediaFile(mediaFile.Id);
-            return new OkResult();
+            return new OkObjectResult(mediaFile);
         }
     }
 }
