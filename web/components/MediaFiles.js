@@ -4,11 +4,7 @@ import EditMediaFileModal from './EditMediaFileModal'
 import { CloudDownload, Trash } from "heroicons-react";
 
 export const MediaFiles = ({ mediaFiles, mediaFileCreated, mediaFileEdited, deleteMediaFile }) => {
-    console.log('mediaFiles length:::', mediaFiles)
-    if (mediaFiles.length === 0) return null
-
     const MediaFileRow = (mediaFile, index) => {
-
         return (
             <tr key={index} className={index % 2 === 0 ? 'odd' : 'even'}>
                 <td>{mediaFile.id}</td>
