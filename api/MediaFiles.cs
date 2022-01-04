@@ -29,7 +29,8 @@ namespace com.chrisrichards
             var todo = new MediaFile() { 
                 FileName = input.FileName,
                 Description = input.Description,
-                SourceUrl = input.SourceUrl
+                SourceUrl = input.SourceUrl,
+                Url = input.SourceUrl
             };
             Store.AddMediaFile(todo);
             return new OkObjectResult(todo);
